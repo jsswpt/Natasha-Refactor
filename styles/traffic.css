@@ -1,0 +1,8 @@
+.traffic {
+  margin: var(--BORDER-W);
+  width: calc(100svw - (var(--BORDER-W) * 2));
+  height: calc(100svh - (var(--BORDER-W) * 2));
+  background: var(--WHITE);
+  border: var(--BORDER-W) solid var(--BLACK);
+  border-radius: 2rem;
+}
