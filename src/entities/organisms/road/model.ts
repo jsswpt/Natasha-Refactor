@@ -41,7 +41,5 @@ export class RoadModel {
 
   update() {}
 
-  init() {
-    console.log("RoadModel init");
-  }
+  init() {}
 }

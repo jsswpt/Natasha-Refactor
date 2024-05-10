@@ -6,6 +6,11 @@ export type RoadParams = {
   name: RoadValues;
 };
 
+type Init = {
+  activeRoadName: RoadValues;
+  carsCount: number;
+};
+
 export class Road {
   private model: RoadModel;
   private view: RoadView;
@@ -23,9 +28,14 @@ export class Road {
     this.view.render();
   }
 
-  init() {
-    console.log("RoadController init");
+  init(params: Init) {
     this.model.init();
     this.view.init();
+
+    this.model.carsCount = params.carsCount;
+
+    if (this.model.name === params.activeRoadName) {
+      this.model.isActive = true;
+    }
   }
 }

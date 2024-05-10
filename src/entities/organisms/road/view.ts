@@ -5,7 +5,5 @@ export class RoadView {
 
   render() {}
 
-  init() {
-    console.log("RoadView init");
-  }
+  init() {}
 }

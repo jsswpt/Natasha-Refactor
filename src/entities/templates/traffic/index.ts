@@ -27,6 +27,13 @@ export class Traffic {
     this.model.init();
     this.view.init();
 
-    this.roads.forEach((item) => item.init());
+    const carsCountForRoad = this.model.carsCount! / this.roads.length;
+
+    this.roads.forEach((item) =>
+      item.init({
+        carsCount: carsCountForRoad,
+        activeRoadName: this.model.activeRoad!,
+      }),
+    );
   }
 }
