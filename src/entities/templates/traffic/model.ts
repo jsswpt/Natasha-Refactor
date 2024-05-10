@@ -1,4 +1,4 @@
-import { getRandomInt } from "../../../utils/get-random-int";
+import { getRandomInt } from "../../../shared/utils/get-random-int";
 
 export type TrafficModelParams = {};
 
