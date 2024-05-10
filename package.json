@@ -1,0 +1,14 @@
+{
+  "name": "traffic",
+  "version": "1.0.0",
+  "author": "jsswpt <paiusov.d@yandex.ru>",
+  "scripts": {
+    "dev": "tsc -w & nodemon --watch dist/scripts --exec 'rollup -c'"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "nodemon": "^3.1.0",
+    "rollup": "^4.17.2",
+    "typescript": "^5.4.5"
+  }
+}
