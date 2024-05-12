@@ -15,6 +15,18 @@ export class TrafficLights {
     this.view = new TrafficLightsView({ ...params });
   }
 
+  toggleRedLight() {
+    this.view.toggleRedLight();
+  }
+
+  toggleYellowLight() {
+    this.view.toggleYellowLight();
+  }
+
+  toggleGreenLight() {
+    this.view.toggleGreenLight();
+  }
+
   update() {
     this.model.update();
   }
@@ -24,7 +36,6 @@ export class TrafficLights {
   }
 
   init() {
-    console.log("TrafficLightsController init");
     this.model.init();
     this.view.init();
   }

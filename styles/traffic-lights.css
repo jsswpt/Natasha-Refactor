@@ -15,7 +15,7 @@
 }
 
 .traffic-light-item--inactive {
-  filter: brightness(0.4);
+  filter: brightness(0.3);
 }
 
 .traffic-light-item::before {
@@ -24,14 +24,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 2rem;
-  height: 2rem;
+  width: 50%;
+  height: 50%;
   background: var(--WHITE);
-  filter: blur(0.5rem);
+  filter: blur(1rem);
   border-radius: 50%;
 }
 
 .traffic-light-item--inactive::before {
+  /* background: var(--BLACK); */
   opacity: 0;
 }
 
