@@ -16,7 +16,16 @@ export class TrafficView {
     const elementsAsString = Object.entries(AvailableRoads).map(
       (item, idx, arr) => `
     <div class='side'>
-      <div class='road-wrap' id='road-${item[1]}-wrap'></div>
+      <div class='road-wrap'>
+        <div class='road-traffic-light-wrap' id='road-${
+          item[1]
+        }-traffic-light-wrap'>
+        </div>
+        <div class='road-traffic-info-wrap' id='road-${
+          item[1]
+        }-traffic-info-wrap'>
+        </div>
+      </div>
     </div>
     ${idx < arr.length - 1 ? `<div class='separator'></div>` : ``}
     `,

@@ -1,4 +1,5 @@
 import { RoadValues } from "../../../shared/data/road.js";
+import { TrafficLights } from "../../molecules/traffic-lights/index.js";
 import { RoadModel } from "./model.js";
 import { RoadView } from "./view.js";
 
@@ -14,10 +15,13 @@ type Init = {
 export class Road {
   private model: RoadModel;
   private view: RoadView;
+  private trafficLights: TrafficLights;
 
   constructor(params: RoadParams) {
     this.model = new RoadModel({ name: params.name });
     this.view = new RoadView();
+
+    this.trafficLights = new TrafficLights({ roadName: params.name });
   }
 
   update() {
@@ -37,5 +41,7 @@ export class Road {
     if (this.model.name === params.activeRoadName) {
       this.model.isActive = true;
     }
+
+    this.trafficLights.init();
   }
 }

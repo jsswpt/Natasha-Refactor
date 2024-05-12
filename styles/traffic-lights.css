@@ -1,0 +1,48 @@
+.traffic-lights {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--BLACK);
+  border-radius: 1rem;
+}
+
+.traffic-light-item {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.traffic-light-item--inactive {
+  filter: brightness(0.4);
+}
+
+.traffic-light-item::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2rem;
+  height: 2rem;
+  background: var(--WHITE);
+  filter: blur(0.5rem);
+  border-radius: 50%;
+}
+
+.traffic-light-item--inactive::before {
+  opacity: 0;
+}
+
+.traffic-light-item--red {
+  background: var(--RED);
+}
+
+.traffic-light-item--yellow {
+  background: var(--YELLOW);
+}
+
+.traffic-light-item--green {
+  background: var(--GREEN);
+}
