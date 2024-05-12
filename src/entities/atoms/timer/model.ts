@@ -23,7 +23,7 @@ export class TimerModel {
   set time(value: number) {
     if (value !== this.time) {
       this._time = value;
-      this._onChange(this.time);
+      this._onChange(value);
     }
   }
 
@@ -38,9 +38,9 @@ export class TimerModel {
   }
 
   private handleTimeEnd() {
-    this._onEnd();
     clearInterval(this.interval!);
     this.interval = null;
+    this._onEnd();
   }
 
   private tickTimer = () => {
@@ -56,9 +56,11 @@ export class TimerModel {
    * @param initialTime value in seconds
    */
   startTimer(initialTime: number) {
-    this.time = initialTime;
+    if (!this.interval) {
+      this.time = initialTime;
 
-    this.interval = setInterval(this.tickTimer, 1000);
+      this.interval = setInterval(this.tickTimer, 1000);
+    }
   }
 
   init() {}

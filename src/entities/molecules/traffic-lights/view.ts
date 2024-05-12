@@ -67,7 +67,6 @@ export class TrafficLightsView {
   }
 
   toggleRedLight() {
-    console.log("toggleRedLight");
     this._redLight?.classList.remove("traffic-light-item--inactive");
     this._yellowLight?.classList.add("traffic-light-item--inactive");
     this._greenLight?.classList.add("traffic-light-item--inactive");
@@ -80,7 +79,6 @@ export class TrafficLightsView {
   }
 
   toggleGreenLight() {
-    console.log("toggleGreenLight");
     this._redLight?.classList.add("traffic-light-item--inactive");
     this._yellowLight?.classList.add("traffic-light-item--inactive");
     this._greenLight?.classList.remove("traffic-light-item--inactive");

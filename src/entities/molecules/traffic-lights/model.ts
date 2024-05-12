@@ -13,7 +13,5 @@ export class TrafficLightsModel {
 
   update() {}
 
-  init() {
-    console.log("TrafficLightsModel init");
-  }
+  init() {}
 }

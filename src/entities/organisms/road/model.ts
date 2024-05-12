@@ -1,4 +1,5 @@
 import { RoadValues } from "../../../shared/data/road";
+import { getRandomInt } from "../../../shared/utils/get-random-int";
 
 export type RoadModelParams = {
   name: RoadValues;

@@ -27,16 +27,33 @@ export class Road {
     this.trafficLights = new TrafficLights({ roadName: params.name });
   }
 
-  toggleYellowLight() {}
-
   private onIsActiveStateChanged = (isActive: boolean) => {
-    console.log(this.model.name, isActive);
     if (isActive) {
       this.trafficLights.toggleGreenLight();
     } else {
       this.trafficLights.toggleRedLight();
     }
   };
+
+  getName() {
+    return this.model.name;
+  }
+
+  getCarsCount() {
+    return this.model.carsCount;
+  }
+
+  toggleRedLight() {
+    this.trafficLights.toggleRedLight();
+  }
+
+  toggleYellowLight() {
+    this.trafficLights.toggleYellowLight();
+  }
+
+  toggleGreenLight() {
+    this.trafficLights.toggleGreenLight();
+  }
 
   update() {
     this.model.update();
@@ -54,10 +71,6 @@ export class Road {
 
     this.trafficLights.init();
 
-    if (this.model.name === params.activeRoadName) {
-      this.model.isActive = true;
-    } else {
-      this.model.isActive = false;
-    }
+    this.model.isActive = this.model.name === params.activeRoadName;
   }
 }

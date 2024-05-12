@@ -1,4 +1,5 @@
-import { AvailableRoads } from "../../../shared/data/road.js";
+import { AvailableRoads, RoadValues } from "../../../shared/data/road.js";
+import { calculateCarNecessaryTime } from "../../../shared/utils/calculate-car-necessary-time/index.js";
 import { getRandomInt } from "../../../shared/utils/get-random-int/index.js";
 import { Timer } from "../../atoms/timer/index.js";
 import { Road } from "../../organisms/road/index.js";
@@ -14,7 +15,9 @@ export class Traffic {
   private timer: Timer;
 
   constructor(params?: TrafficParams) {
-    this.model = new TrafficModel();
+    this.model = new TrafficModel({
+      onActiveRoadChange: this.onActiveRoadChanged,
+    });
     this.view = new TrafficView();
 
     this.roads = Object.entries(AvailableRoads).map(
@@ -22,10 +25,38 @@ export class Traffic {
     );
 
     this.timer = new Timer({
-      onChange: (value) => console.log("changed", value),
-      onEnd: () => console.log("end"),
+      onChange: this.onTimerChanged,
+      onEnd: this.onTimerEnded,
     });
   }
+
+  onTimerChanged = (value: number | null) => {
+    console.log(value);
+    if (value && value <= 4) {
+      this.roads.forEach((item) => item.toggleYellowLight());
+    }
+  };
+
+  onTimerEnded = () => {
+    this.model.switchActiveRoad();
+    this.roads.forEach(
+      (item) =>
+        item.getName() === this.model.activeRoad &&
+        this.timer.start(calculateCarNecessaryTime(item.getCarsCount())),
+    );
+  };
+
+  onActiveRoadChanged = (value: RoadValues) => {
+    this.roads.forEach((item) => {
+      if (item.getName() === value) {
+        item.toggleGreenLight();
+      } else {
+        item.toggleRedLight();
+      }
+    });
+
+    // this.timer.start(necessaryTime);
+  };
 
   update() {}
 
@@ -44,7 +75,6 @@ export class Traffic {
       }),
     );
 
-    this.timer.init();
-    this.timer.start(getRandomInt(10, 10, 2));
+    this.timer.start(calculateCarNecessaryTime(carsCountForRoad));
   }
 }

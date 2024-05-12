@@ -1,15 +1,19 @@
 import { AvailableRoads, RoadValues } from "../../../shared/data/road";
 import { getRandomInt } from "../../../shared/utils/get-random-int";
 
-export type TrafficModelParams = {};
+export type TrafficModelParams = {
+  onActiveRoadChange: (value: RoadValues) => void;
+};
 
 export class TrafficModel {
   private _carsCount: number | null;
   private _activeRoad: RoadValues | null;
+  private onActiveRoadChange: TrafficModelParams["onActiveRoadChange"];
 
-  constructor(params?: TrafficModelParams) {
+  constructor(params: TrafficModelParams) {
     this._carsCount = null;
     this._activeRoad = null;
+    this.onActiveRoadChange = params.onActiveRoadChange;
   }
 
   get carsCount(): number | null {
@@ -29,6 +33,7 @@ export class TrafficModel {
   set activeRoad(value: RoadValues) {
     if (value !== this.activeRoad) {
       this._activeRoad = value;
+      this.onActiveRoadChange(value);
     }
   }
 
@@ -45,8 +50,13 @@ export class TrafficModel {
       ][1];
   }
 
+  switchActiveRoad() {
+    this.activeRoad = this.activeRoad === "a" ? "b" : "a";
+    this.onActiveRoadChange(this.activeRoad);
+  }
+
   init() {
-    this.setInitialCarsCount();
     this.setInitialActiveRoad();
+    this.setInitialCarsCount();
   }
 }
