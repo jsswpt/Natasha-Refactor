@@ -1,8 +1,27 @@
 .traffic {
+  position: relative;
   margin: var(--BORDER-W);
+  display: flex;
   width: calc(100svw - (var(--BORDER-W) * 2));
   height: calc(100svh - (var(--BORDER-W) * 2));
   background: var(--WHITE);
   border: var(--BORDER-W) solid var(--BLACK);
   border-radius: 2rem;
+}
+
+.side {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.road-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.separator {
+  height: 100%;
+  width: var(--BORDER-W);
+  background: var(--BLACK);
 }
