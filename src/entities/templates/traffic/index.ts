@@ -31,9 +31,22 @@ export class Traffic {
   }
 
   onTimerChanged = (value: number | null) => {
-    console.log(value);
-    if (value && value <= 4) {
-      this.roads.forEach((item) => item.toggleYellowLight());
+    console.log("time", value);
+    if (value) {
+      if (value <= 4) {
+        this.roads.forEach((item) => item.toggleYellowLight());
+      } else {
+        if (value % 2 === 0) {
+          this.roads.forEach((item) => {
+            if (item.getName() === this.model.activeRoad) {
+              item.decrementCarsCount();
+              console.log(item.getName(), item.getCarsCount());
+            } else {
+              console.log(item.getName(), item.getCarsCount());
+            }
+          });
+        }
+      }
     }
   };
 

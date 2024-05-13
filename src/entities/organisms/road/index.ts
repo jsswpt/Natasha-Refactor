@@ -55,6 +55,10 @@ export class Road {
     this.trafficLights.toggleGreenLight();
   }
 
+  decrementCarsCount() {
+    this.model.carsCount = this.model.carsCount ? this.model.carsCount - 1 : 0;
+  }
+
   update() {
     this.model.update();
   }
